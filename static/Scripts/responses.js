@@ -1,19 +1,34 @@
-function getBotResponse(input) {
-    //rock paper scissors
-    if (input == "rock") {
-        return "paper";
-    } else if (input == "paper") {
-        return "scissors";
-    } else if (input == "scissors") {
-        return "rock";
-    }
+async function fetchMessages() {
+  try {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-    // Simple responses
-    if (input == "hello") {
-        return "Hello there!";
-    } else if (input == "goodbye") {
-        return "Talk to you later!";
-    } else {
-        return "Try asking something else!";
-    }
+    var raw = JSON.stringify({
+      context: responses.slice(-3),
+      emotion: "joy",
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    const response = await fetch(
+      "http://192.168.29.11:8080/cakechat_api/v1/actions/get_response",
+      requestOptions
+    );
+    const result = await response.text();
+    return result;
+  } catch (err) {
+    return err;
+    // console.log("error", error);
+  }
+}
+
+async function getBotResponse(input) {
+  const res = await fetchMessages();
+  const responseMessage = JSON.parse(res).response;
+  responses.push(responseMessage);
+  return responseMessage;
 }
