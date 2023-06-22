@@ -11,15 +11,47 @@
     <link rel="stylesheet" href="static/css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+    <style>
+        /* Additional styles for the music player button */
+        .music-player {
+            display: flex;
+            align-items: left;
+            justify-content: center;
+            width: 200px;
+            height: 50px;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        body  {
+      background-image: url('https://i.pinimg.com/564x/39/b3/82/39b38206b1086f5d3be414992d569e3d.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;  
+      background-size: cover; 
+      
+    }
+    </style>
+
 </head>
 
 <body>
+    <!-- MUSIC PLAYER BUTTON -->
+
+    <div class="music-player" onclick="toggleMusic()">
+        <i class="fa fa-fw fa-music"></i> Namo Namo
+    </div>
+
     <!-- CHAT BAR BLOCK -->
     <div class="chat-bar-collapsible">
+        <!-- Chat button -->
         <button id="chat-button" type="button" class="collapsible">Chat with us!
             <i id="chat-icon" style="color: #fff;" class="fa fa-fw fa-comments-o"></i>
         </button>
 
+        <!-- Chat content -->
         <div class="content">
             <div class="full-chat-block">
                 <!-- Message Container -->
@@ -50,19 +82,24 @@
                         <div id="chat-bar-bottom">
                             <p></p>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
-
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="static/scripts/responses.js"></script>
-<script src="static/scripts/chat.js"></script>
-<script src="static/scripts/responsesDB.js"></script>
-
-</html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="static/scripts/responses.js"></script>
+    <script src="static/scripts/chat.js"></script>
+    <script src="static/scripts/responsesDB.js"></script>
+    <script>
+        // Toggle the music player
+        function toggleMusic() {
+            var audio = document.getElementById('music-player');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    
